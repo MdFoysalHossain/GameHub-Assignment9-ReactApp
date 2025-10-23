@@ -8,6 +8,7 @@ const MyProfile = () => {
 
     return (
         <div className='flex flex-col justify-center items-center my-10'>
+            <title>GameHub - User Info</title>
             <div className="w-[400px]">
                 <img className='rounded-2xl' src={userInfo.photoURL} alt="" />
             </div>

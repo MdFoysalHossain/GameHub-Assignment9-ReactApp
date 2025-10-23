@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { auth } from '../Firebase/firebase.init';
 import { AuthContext } from './AuthContext';
 import { GoogleAuthProvider } from "firebase/auth";
@@ -23,6 +23,10 @@ const AuthProvider = ({children}) => {
             photoURL: imgLink
         })
     } 
+
+    const forgotPassword = (email) => {
+        return sendPasswordResetEmail(auth, email)
+    }
 
     const googleSignIn = () => {
         setLoading(false)
@@ -61,6 +65,7 @@ const AuthProvider = ({children}) => {
         updateUserInfo,
         userLogOut,
         userEmailLogin,
+        forgotPassword,
         googleSignIn,
         userInfo,
         setUser,

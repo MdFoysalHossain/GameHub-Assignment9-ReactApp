@@ -73,7 +73,10 @@ const AuthLogin = () => {
                             }
 
                             <button className="btn btn-neutral mt-4">Login</button>
-                            <div className='mt-2'>Dont Have An Account? <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Register"}>Register</NavLink></div>
+                            <div className='mt-2 flex justify-between'>
+                                <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Register"}>Register a New Account</NavLink>
+                                <NavLink className="link link-hover text-gray-800 font-semibold" to={"/Auth/Forgot"}>Forgot Password?</NavLink>
+                            </div>
                         </fieldset>
                     </form>
                 </div>

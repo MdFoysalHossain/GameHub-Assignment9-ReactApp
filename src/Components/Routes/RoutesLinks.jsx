@@ -9,6 +9,7 @@ import ProtectedRoute from "../Routes/ProtectedRoute";
 import Error404 from "../Components/Error/Error404";
 import MyProfile from "../Components/MyProfile/MyProfile";
 import UpdateInfo from "../Components/MyProfile/UpdateInfo";
+import AuthForgot from "../Components/Auth/AuthForgot";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
       {
         path: "/Auth/Login",
         Component: AuthLogin,
+      },
+      {
+        path: "/Auth/Forgot",
+        Component: AuthForgot,
       },
       {
         path: "/Auth/Register",

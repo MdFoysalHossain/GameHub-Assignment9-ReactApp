@@ -26,6 +26,7 @@ const UpdateInfo = () => {
     }
     return (
         <div className='flex justify-center items-center h-[80vh]'>
+            <title>GameHub - Update User Info</title>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <div className="card bg-base-100 w-full h-fit max-w-sm shrink-0 shadow-md">
                 <div className="card-body">

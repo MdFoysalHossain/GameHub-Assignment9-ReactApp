@@ -123,7 +123,10 @@ const AuthRegister = () => {
                             </ul>
 
                             <button className="btn btn-neutral mt-4">Register</button>
-                            <div className='mt-2'>Already Have An Account? <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Login"}>Login</NavLink></div>
+                            <div className='mt-2 flex justify-between'>
+                                <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Login"}>Already Have An Account? </NavLink>
+                                <NavLink className="link link-hover text-gray-800 font-semibold" to={"/Auth/Forgot"}>Forgot Password?</NavLink>
+                            </div>
                         </fieldset>
                     </form>
                 </div>
