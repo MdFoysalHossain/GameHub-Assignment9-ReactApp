@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { Link, Navigate, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 
@@ -6,7 +6,6 @@ const Navbar = () => {
     const navigate = useNavigate();
 
     const {userInfo, userLogOut, setUser} = use(AuthContext)
-
 
 
     const selectedCat = (e) => {
@@ -34,13 +33,13 @@ const Navbar = () => {
             <option>MMORPG</option>
         </select></li>
         {
-            userInfo ? <li><NavLink onClick={userLogOutFunc} className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Log Out</NavLink></li> : 
+            userInfo ? <li className='flex flex-row gap-2 justify-center items-center'><img className='w-[40px] h-[40px] p-0 m-0 bg-white' src={userInfo.photoURL} alt="" /> <NavLink onClick={userLogOutFunc} className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Log Out</NavLink></li> : 
             <li><NavLink className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Login</NavLink></li>
         }
     </>
 
     return (
-        <div className="navbar">
+        <div className="navbar justify-center items-center">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
