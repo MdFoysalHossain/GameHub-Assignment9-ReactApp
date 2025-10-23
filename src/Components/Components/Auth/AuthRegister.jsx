@@ -1,31 +1,64 @@
 import { Eye, EyeClosed } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router';
+import AuthProvider from '../../Contexts/AuthProvider';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 const AuthRegister = () => {
+
+    const {createAccountEmailPass, updateUserInfo, user, setUser} = useContext(AuthContext)
+    // console.log(createAccountEmailPass)
+
     const [eye, setEye] = useState(false)
+
+    console.log(user)
 
     const checkEye = () => {
         setEye(!eye)
     }
+
+    const CreateAccountWithEmail = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const confirmPassword = e.target.confirmPassword.value;
+        const name = e.target.name.value;
+        const imgLink = e.target.imgLink.value;
+
+        console.log(email, password, confirmPassword, name, imgLink)
+        createAccountEmailPass(email, password)
+        .then(result => {
+            // console.log("User:", result)
+            updateUserInfo(name, imgLink)
+                .then(()=> {
+                    console.log("Updated User Info:", result)
+                    setUser(result.user)
+                }) .catch(error => {
+                    console.log("Error Updating:", error)
+                })
+        }) .catch(error => {
+            console.log("Error SignUp:", error)
+        })
+    }
+
     return (
         <div className='flex flex-col gap-5 justify-center items-center h-[90vh]'>
 
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
                     <h2 className='text-2xl font-semibold mb-2'>Account <span className='text-primary'>Register</span></h2>
-                    <form>
+                    <form onSubmit={CreateAccountWithEmail}>
                         <fieldset className="fieldset">
                             <label className="label">Name</label>
                             <input type="text" name='name' className="input" placeholder="Name" required />
                             <label className="label">Profile Image</label>
-                            <input type="text" name='name' className="input" placeholder="Image Link" required />
+                            <input type="text" name='imgLink' className="input" placeholder="Image Link" required />
                             <label className="label">Email</label>
                             <input type="email" name='email' className="input" placeholder="Email" required />
                             <label className="label">Password</label>
                             <input type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
                             <label className="label">Confirm Password</label>
-                            <input type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
+                            <input type={eye ? "text" : "password"} name='confirmPassword' className="input" placeholder="Password" required />
 
                             {
                                 eye ? <Eye onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' />

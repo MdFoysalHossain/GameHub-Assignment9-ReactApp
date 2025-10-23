@@ -3,6 +3,7 @@ import HomeRoot from "../Layout/HomeRoot";
 import Home from "../Components/Home/Home";
 import AuthLogin from "../Components/Auth/AuthLogin";
 import AuthRegister from "../Components/Auth/AuthRegister";
+import AuthProvider from "../Contexts/AuthProvider";
 
 export const router = createBrowserRouter([
   {
