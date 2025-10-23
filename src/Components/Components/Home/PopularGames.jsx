@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import { DataContext } from '../../Contexts/DataContext';
 import "./Banner.css"
 import { Link } from 'react-router';
@@ -6,17 +6,40 @@ import { Link } from 'react-router';
 const PopularGames = () => {
     const { dataGot } = use(DataContext);
 
-    const sortedGames = dataGot.slice().sort((a, b) => parseFloat(b.ratings) - parseFloat(a.ratings));
+    
+    const highToLow = dataGot.slice().sort((a, b) => parseFloat(b.ratings) - parseFloat(a.ratings));
+    const LowToHigh = dataGot.slice().sort((a, b) => parseFloat(a.ratings) - parseFloat(b.ratings));
+    
+    const [data, setData] = useState(highToLow)
 
+    const sortChanger = (e) => {
+        // e.preventDefault();
+        const targetValue = e.target.value;
+        if(targetValue === "High to Low"){
+            setData(highToLow)
+        }else{
+            setData(LowToHigh)
+
+        }
+    }
 
     return (
         <div className='mt-10'>
-            <h2 className='text-3xl font-bold mb-5 mt-16'>Popular <span className='text-primary'>Games</span></h2>
+            <div className="flex justify-between items-center mb-5 mt-16">
+
+                <h2 className='text-3xl font-bold '>Popular <span className='text-primary'>Games</span></h2>
+                
+                <select onChange={sortChanger} defaultValue="Sort by Rating" className="select w-[170px]">
+                    <option disabled={true}>Sort by Rating</option>
+                    <option>High to Low</option>
+                    <option>Low to High</option>
+                </select>
+            </div>
 
             <div className="grid grid-cols-3 gap-5 justify-center items-center">
 
                 {
-                    sortedGames.map((item, index) => <SingleGame key={index} item={item}></SingleGame>)
+                    data.map((item, index) => <SingleGame key={index} item={item}></SingleGame>)
                 }
 
             </div>
