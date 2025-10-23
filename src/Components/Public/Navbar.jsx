@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, Navigate, NavLink, useNavigate } from 'react-router';
+import { AuthContext } from '../Contexts/AuthContext';
 
 const Navbar = () => {
     const navigate = useNavigate();
+
+    const {userInfo, userLogOut, setUser} = use(AuthContext)
+
+
 
     const selectedCat = (e) => {
         // console.log(e.target.value)
@@ -12,6 +17,15 @@ const Navbar = () => {
         navigate(`/Genre/${selectedGenre}`);
     }
 
+    const userLogOutFunc = () => {
+        userLogOut()
+            .then(
+                setUser(null)
+            ) .catch(error => {
+                console.log("Logout Error:", error)
+            })
+    }
+
     const selectCat = <>
         <li><select defaultValue="Select Game Genre" onChange={selectedCat} className="select bg-white text-black">
             <option disabled={true}>Select Game Genre</option>
@@ -19,7 +33,10 @@ const Navbar = () => {
             <option>RPG</option>
             <option>MMORPG</option>
         </select></li>
-        <li><NavLink className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Login</NavLink></li>
+        {
+            userInfo ? <li><NavLink onClick={userLogOutFunc} className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Log Out</NavLink></li> : 
+            <li><NavLink className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Login</NavLink></li>
+        }
     </>
 
     return (

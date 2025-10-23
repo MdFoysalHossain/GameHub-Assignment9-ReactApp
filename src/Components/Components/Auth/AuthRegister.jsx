@@ -6,12 +6,16 @@ import { AuthContext } from '../../Contexts/AuthContext';
 
 const AuthRegister = () => {
 
-    const {createAccountEmailPass, updateUserInfo, user, setUser} = useContext(AuthContext)
+    const {createAccountEmailPass, updateUserInfo, userInfo, setUser, loading} = useContext(AuthContext)
     // console.log(createAccountEmailPass)
 
     const [eye, setEye] = useState(false)
+    // console.log("Is Loading?",loading)
 
-    console.log(user)
+    if(!loading){
+        console.log("Loading:", loading)
+        console.log("User after Loading:",userInfo)
+    }
 
     const checkEye = () => {
         setEye(!eye)

@@ -1,8 +1,24 @@
 import { Eye, EyeClosed } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { NavLink } from 'react-router';
+import { AuthContext } from '../../Contexts/AuthContext';
 
 const AuthLogin = () => {
+    const { userEmailLogin } = use(AuthContext);
+
+    const userLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        userEmailLogin(email, password)
+            .then(result => {
+                console.log(result)
+            }) .catch(error => {
+                console.log("Login Error:", error)
+            })
+
+    }
+
     const [eye, setEye] = useState(false)
 
     const checkEye = () => {
@@ -15,19 +31,21 @@ const AuthLogin = () => {
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
                     <h2 className='text-2xl font-semibold mb-2'>Account <span className='text-primary'>Login</span></h2>
-                    <fieldset className="fieldset">
-                        <label className="label">Email</label>
-                        <input type="email" name='email' className="input" placeholder="Email" required />
-                        <label className="label">Password</label>
-                        <input type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
+                    <form onSubmit={userLogin}>
+                        <fieldset className="fieldset">
+                            <label className="label">Email</label>
+                            <input type="email" name='email' className="input" placeholder="Email" required />
+                            <label className="label">Password</label>
+                            <input type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
 
-                        {
-                            eye ? <Eye onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' />
-                        }
+                            {
+                                eye ? <Eye onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' />
+                            }
 
-                        <button className="btn btn-neutral mt-4">Login</button>
-                        <div className='mt-2'>Dont Have An Account? <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Register"}>Register</NavLink></div>
-                    </fieldset>
+                            <button className="btn btn-neutral mt-4">Login</button>
+                            <div className='mt-2'>Dont Have An Account? <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Register"}>Register</NavLink></div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
             <span className='flex justify-center items-center gap-4'><p className='w-[100px] h-0.5 bg-gray-200'></p> or <p className='w-[100px] h-0.5 bg-gray-200'></p></span>
