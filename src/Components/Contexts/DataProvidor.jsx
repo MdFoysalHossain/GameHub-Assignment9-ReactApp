@@ -1,7 +1,7 @@
 import React, { use } from 'react';
 import { DataContext } from './DataContext';
 
-const promiseData = fetch("./GameDetails.js").then(res => res.json())
+const promiseData = fetch("/GameDetails.js").then(res => res.json())
 
 const DataProvidor = ({ children }) => {
 

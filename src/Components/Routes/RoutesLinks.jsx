@@ -4,6 +4,8 @@ import Home from "../Components/Home/Home";
 import AuthLogin from "../Components/Auth/AuthLogin";
 import AuthRegister from "../Components/Auth/AuthRegister";
 import AuthProvider from "../Contexts/AuthProvider";
+import Post from "../Components/Post/Post";
+import ProtectedRoute from "../Routes/ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +23,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/Auth",
-        element: <Navigate to="/Auth/Login"/>,
+        element: <Navigate to="/Auth/Login" />,
       },
       {
         path: "/Auth/Login",
@@ -30,7 +32,14 @@ export const router = createBrowserRouter([
       {
         path: "/Auth/Register",
         Component: AuthRegister,
-      },
+      }, 
+      {
+        path: "/Post/:id",
+        element: 
+        <ProtectedRoute>
+          <Post></Post>
+        </ProtectedRoute>
+      }
     ],
   },
   {

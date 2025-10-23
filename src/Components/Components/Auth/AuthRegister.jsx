@@ -95,6 +95,7 @@ const AuthRegister = () => {
     return (
         <div className='flex flex-col gap-5 justify-center items-center h-[90vh]'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
+            <title>GameHub - Register</title>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
                     <h2 className='text-2xl font-semibold mb-2'>Account <span className='text-primary'>Register</span></h2>

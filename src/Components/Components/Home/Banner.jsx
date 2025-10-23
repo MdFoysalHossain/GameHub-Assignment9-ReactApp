@@ -4,11 +4,12 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { DataContext } from '../../Contexts/DataContext';
 import "./Banner.css";
+import { Link } from 'react-router';
 
 const Banner = () => {
     const { dataGot } = use(DataContext);
 
-    const threeDetails = dataGot.slice(0, 3);
+    const threeDetails = dataGot.slice(0, 4);
 
     const settings = {
         dots: true,
@@ -32,10 +33,12 @@ const Banner = () => {
 
 function SingleSlider({ item }) {
     return (
-        <div className='relative h-[700px] w-full flex flex-col items-center justify-center gap-5'>
-            <img src={item.coverPhoto} alt={item.title} className=" h-[800px] rounded-2xl w-[1200px] object-cover" />
-            <h2 className='absolute bottom-[35px] right-[180px] py-2 px-7 rounded-lg font-semibold bg-white text-black z-50'>{item.title}</h2>
-        </div>
+        <Link to={`/Post/${item.id}`}>
+            <div className='relative h-[700px] w-full flex flex-col items-center justify-center gap-5'>
+                <img src={item.coverPhoto} alt={item.title} className=" h-[800px] rounded-2xl w-[1200px] object-cover" />
+                <h2 className='absolute bottom-[35px] right-[180px] py-2 px-7 rounded-lg font-semibold bg-white text-black z-50'>{item.title}</h2>
+            </div>
+        </Link>
     );
 }
 

@@ -6,6 +6,7 @@ import NewsLetter from './NewsLetter';
 const Home = () => {
     return (
         <div>
+            <title>GameHub - Home</title>
             <Banner></Banner>
             <PopularGames></PopularGames>
             <NewsLetter></NewsLetter>

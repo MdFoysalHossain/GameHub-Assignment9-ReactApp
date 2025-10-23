@@ -1,6 +1,6 @@
 import { Eye, EyeClosed } from 'lucide-react';
 import React, { use, useState } from 'react';
-import { NavLink } from 'react-router';
+import { Navigate, NavLink, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 const AuthLogin = () => {
     const { userEmailLogin, googleSignIn } = use(AuthContext);
+    const navigation = useNavigate()
+    const location = useLocation()
+
+    const from = location.state?.from || '/';
+    console.log("Location From", from )
+
+
 
     const userLogin = (e) => {
         e.preventDefault();
@@ -15,24 +22,25 @@ const AuthLogin = () => {
         const password = e.target.password.value;
         userEmailLogin(email, password)
             .then(result => {
-                console.log(result)
                 toast("Successfully Logged In!", { style: { background: "#12d369", color: "white" } })
+                navigation(from);
+                
+
+
             }).catch(error => {
                 if (error.message === "Firebase: Error (auth/invalid-credential).") {
                     toast("Credintial Does Not Match", {style: {background: "#ff4d4d", color: "white"}})
                 } else{
-                    console.log(error)
                     toast("An error occured while logging in, try again!", {style: {background: "#ff4d4d", color: "white"}})
                 }
             })
-
     }
 
     const signInGoogle = () => {
         googleSignIn()
             .then(result => {
-                // console.log("Google Signin Successful \n", result)
                 toast("Login Successful", {style: {background: "#12d369", color: "white"}})
+                navigation(from);
             }).catch(error => {
                 console.log(error)
                 toast("An error occured while logging in, try again!", {style: {background: "#ff4d4d", color: "white"}})
@@ -48,6 +56,7 @@ const AuthLogin = () => {
     return (
         <div className='flex flex-col gap-5 justify-center items-center h-[90vh]'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
+            <title>GameHub - Login</title>
 
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
