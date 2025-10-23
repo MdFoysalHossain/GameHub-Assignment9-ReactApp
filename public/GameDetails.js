@@ -62,7 +62,7 @@
   {
     "id": "7",
     "title": "Cyberpunk 2077",
-    "coverPhoto": "https://static.wikia.nocookie.net/cyberpunk/images/8/83/Cyberpunk2077-PhantomLiberty-Ultimate_Edition_Keyart.jpg/revision/latest?cb=20240523025743https://example.com/images/cyberpunk2077.png",
+    "coverPhoto": "https://static.cdprojektred.com/cms.cdprojektred.com/16x9_big/12aaa3b137a18e180bb92682e8f81674dcb7451f-1280x720.jpg",
     "category": "RPG",
     "downloadLink": "https://www.cyberpunk.net/",
     "description": "Cyberpunk 2077 is an open-world RPG set in Night City, where choices affect story outcomes.",
