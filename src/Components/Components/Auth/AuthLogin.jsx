@@ -16,10 +16,12 @@ const AuthLogin = () => {
         userEmailLogin(email, password)
             .then(result => {
                 console.log(result)
+                toast("Successfully Logged In!", { style: { background: "#12d369", color: "white" } })
             }).catch(error => {
                 if (error.message === "Firebase: Error (auth/invalid-credential).") {
                     toast("Credintial Does Not Match", {style: {background: "#ff4d4d", color: "white"}})
                 } else{
+                    console.log(error)
                     toast("An error occured while logging in, try again!", {style: {background: "#ff4d4d", color: "white"}})
                 }
             })

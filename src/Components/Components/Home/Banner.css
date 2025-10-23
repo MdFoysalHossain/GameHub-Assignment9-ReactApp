@@ -1,0 +1,50 @@
+button {
+  color: black;
+  background: red;
+}
+.slick-arrow, .slick-arrow:hover, .slick-arrow:focus{
+    color: white;
+  background: #9B28F7;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: white;
+}
+
+.slick-next {
+    position: absolute;
+    z-index: 1;
+    top: 92.2%;
+    left: 91%;
+}
+
+.slick-prev{
+    /* left: 1000px; */
+    position: absolute;
+    z-index: 1;
+    top: 92.2%;
+    left: 87%;
+}
+
+.slick-prev:before, .slick-next:before {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'slick';
+    font-size: 25px;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    color: white;
+}
+
+
+h3{
+    color: red;
+}
