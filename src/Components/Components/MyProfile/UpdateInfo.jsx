@@ -3,12 +3,12 @@ import { NavLink } from 'react-router';
 import { DataContext } from '../../Contexts/DataContext';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
+import { motion } from "motion/react"
 
 const UpdateInfo = () => {
 
     const { userInfo, updateUserInfo } = use(AuthContext)
 
-    console.log("Update User:", userInfo)
 
     const updateInfo = (e) => {
         e.preventDefault();
@@ -18,14 +18,15 @@ const UpdateInfo = () => {
             .then(result => toast("Info Updated Successfully", { style: { background: "#12d369", color: "white" } })
             )
             .catch(error => {
-                    console.log("Updating error", error.message)
                     toast("An error occured while updaing info, try again!", { style: { background: "#ff4d4d", color: "white" } })
                 }
             )
 
     }
     return (
-        <div className='flex justify-center items-center h-[80vh]'>
+        <motion.div 
+        initial={{ scale: 0 }} animate={{ scale: 1 }}
+        className='flex justify-center items-center h-[80vh]'>
             <title>GameHub - Update User Info</title>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <div className="card bg-base-100 w-full h-fit max-w-sm shrink-0 shadow-md">
@@ -49,7 +50,7 @@ const UpdateInfo = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

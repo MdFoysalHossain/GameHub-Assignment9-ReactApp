@@ -14,7 +14,6 @@ const AuthLogin = () => {
     const location = useLocation()
 
     const from = location.state?.from || '/';
-    console.log("Location From", from)
 
 
 
@@ -44,7 +43,6 @@ const AuthLogin = () => {
                 toast("Login Successful", { style: { background: "#12d369", color: "white" } })
                 navigation(from);
             }).catch(error => {
-                console.log(error)
                 toast("An error occured while logging in, try again!", { style: { background: "#ff4d4d", color: "white" } })
             })
     }
@@ -80,7 +78,7 @@ const AuthLogin = () => {
                                 eye ? <Eye onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' />
                             }
 
-                            <button className="btn btn-neutral mt-4">Login</button>
+                            <button className="btn btn-primary text-white mt-4">Login</button>
                             <div className='mt-2 flex justify-between'>
                                 <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Register"}>Register a New Account</NavLink>
                                 <NavLink className="link link-hover text-gray-800 font-semibold" to={"/Auth/Forgot"}>Forgot Password?</NavLink>

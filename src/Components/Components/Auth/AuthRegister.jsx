@@ -9,7 +9,6 @@ import { motion } from "motion/react"
 const AuthRegister = () => {
 
     const { createAccountEmailPass, updateUserInfo, userInfo, setUser, loading, googleSignIn } = useContext(AuthContext)
-    // console.log(createAccountEmailPass)
 
 
     const [passLength, setPassLength] = useState(false)
@@ -17,12 +16,7 @@ const AuthRegister = () => {
     const [hasLower, setHasLower] = useState(false)
 
     const [eye, setEye] = useState(false)
-    // console.log("Is Loading?",loading)
 
-    if (!loading) {
-        console.log("Loading:", loading)
-        console.log("User after Loading:", userInfo)
-    }
 
     const checkEye = () => {
         setEye(!eye)
@@ -38,10 +32,8 @@ const AuthRegister = () => {
         if (passLength && hasUpper && hasLower) {
             createAccountEmailPass(email, password)
                 .then(result => {
-                    // console.log("User:", result)
                     updateUserInfo(name, imgLink)
                         .then(() => {
-                            // console.log("Updated User Info:", result)
                             setUser(result.user)
                             toast("Successfully Account Created!", { style: { background: "#12d369", color: "white" } })
                         }).catch(error => {
@@ -59,10 +51,8 @@ const AuthRegister = () => {
     const signInGoogle = () => {
         googleSignIn()
             .then(result => {
-                // console.log("Google Signin Successful \n", result)
                 toast("Successfully Logged in", { style: { background: "#12d369", color: "white" } })
             }).catch(error => {
-                // console.log("Google Login Error:", error)
                 toast("An error occured while logging in, try again!", { style: { background: "#ff4d4d", color: "white" } })
             })
     }
@@ -70,11 +60,8 @@ const AuthRegister = () => {
 
     const validatePassword = (e) => {
         const password = e.target.value;
-        console.log(password)
-        // const confirmPassword = e.target.confirmPassword.value;
 
         if (password.length < 6) {
-            // return "Password must be at least 6 characters long";
             setPassLength(false)
         } else {
             setPassLength(true)
@@ -113,8 +100,6 @@ const AuthRegister = () => {
                             <input type="email" name='email' className="input" placeholder="Email" required />
                             <label className="label">Password</label>
                             <input onChange={validatePassword} type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
-                            {/* <label className="label">Confirm Password</label>
-                            <input type={eye ? "text" : "password"} name='confirmPassword' className="input" placeholder="Password" required /> */}
 
                             {
                                 eye ? <Eye onClick={checkEye} className='absolute bottom-[197px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[197px] right-[50px] cursor-pointer' />
@@ -126,7 +111,7 @@ const AuthRegister = () => {
                                 <li className={hasLower ? "text-green-500" : "text-red-500"}>Must have 1 Lowercase</li>
                             </ul>
 
-                            <button className="btn btn-neutral mt-4">Register</button>
+                            <button className="btn btn-primary text-white mt-4">Register</button>
                             <div className='mt-2 flex justify-between'>
                                 <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Login"}>Already Have An Account? </NavLink>
                                 <NavLink className="link link-hover text-gray-800 font-semibold" to={"/Auth/Forgot"}>Forgot Password?</NavLink>

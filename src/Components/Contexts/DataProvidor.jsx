@@ -7,8 +7,6 @@ const DataProvidor = ({ children }) => {
 
     const dataGot = use(promiseData)
 
-    // console.log("Promised Data:", dataGot)
-
     const data ={
         dataGot
     }

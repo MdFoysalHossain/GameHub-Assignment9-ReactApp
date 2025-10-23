@@ -4,7 +4,6 @@ import { NavLink } from 'react-router';
 
 const MyProfile = () => {
     const {userInfo} = use(AuthContext);
-    console.log(userInfo)
 
     return (
         <div className='flex flex-col justify-center items-center my-10'>

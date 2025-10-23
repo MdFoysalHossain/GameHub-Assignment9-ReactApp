@@ -7,7 +7,6 @@ const ProtectedRoute = ({ children }) => {
   
   const { userInfo, loading } = useContext(AuthContext);
   const location = useLocation()
-  console.log("Locataion:", location)
   location.state = location.pathname;
 
   if(loading){
@@ -15,7 +14,6 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (userInfo) {
-    console.log("Protected", userInfo);
     return children;
   }
 

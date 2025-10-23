@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../Contexts/DataContext';
-import { useLocation, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import Error404Logo from "../../../assets/App-Error.png"
 
 const Post = () => {
@@ -21,7 +21,6 @@ const Post = () => {
     }
 
 
-    // console.log("PostInfo", postInfo)
     return (
         <div className='flex flex-col justify-center items-center gap-5 mt-10'>
             <title>{"GameHub - " + postInfo.title}</title>
