@@ -2,6 +2,8 @@ import React, { use, useState } from 'react';
 import { DataContext } from '../../Contexts/DataContext';
 import "./Banner.css"
 import { Link } from 'react-router';
+import { motion } from "motion/react"
+
 
 const PopularGames = () => {
     const { dataGot } = use(DataContext);
@@ -51,7 +53,12 @@ function SingleGame({ item }) {
     return (
         <Link to={`/Post/${item.id}`}>
 
-            <div className="card SinglePopularGame bg-base-100 image-full w-96 shadow-sm">
+            <motion.div
+            initial={{ scale: 1.0 }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+
+            className="card SinglePopularGame bg-base-100 image-full w-96 shadow-sm">
                 <figure>
                     <img className='h-[220px] w-full'
                         src={item.coverPhoto}
@@ -68,7 +75,7 @@ function SingleGame({ item }) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </Link>
     )
 }

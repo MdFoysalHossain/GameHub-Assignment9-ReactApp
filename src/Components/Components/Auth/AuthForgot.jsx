@@ -2,6 +2,7 @@ import React, { use } from 'react';
 import { NavLink } from 'react-router';
 import { ToastContainer, toast } from 'react-toastify';
 import { AuthContext } from '../../Contexts/AuthContext';
+import { motion } from "motion/react"
 
 const AuthForgot = () => {
 
@@ -14,6 +15,7 @@ const AuthForgot = () => {
         forgotPassword(email)
             .then(result => {
                 toast("Password Reset was Successful", { style: { background: "#12d369", color: "white" } })
+                window.open("http://gmail.com/", "_blank")
             })
             .catch(error => {
                 toast("An error occured while trying to reset password, try again!", {style: {background: "#ff4d4d", color: "white"}})
@@ -22,9 +24,11 @@ const AuthForgot = () => {
     }
 
     return (
-        <div className='flex justify-center items-center h-[80vh]'>
+        <motion.div
+            initial={{ scale: 0 }} animate={{ scale: 1 }}
+        className='flex justify-center items-center h-[80vh]'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
-            <title>GameHub - Login</title>
+            <title>GameHub - Forgot Password</title>
 
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
@@ -44,7 +48,7 @@ const AuthForgot = () => {
                 </div>
             </div>
             
-        </div>
+        </motion.div>
     );
 };
 
