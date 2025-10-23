@@ -19,6 +19,8 @@ const AuthLogin = () => {
             }).catch(error => {
                 if (error.message === "Firebase: Error (auth/invalid-credential).") {
                     toast("Credintial Does Not Match", {style: {background: "#ff4d4d", color: "white"}})
+                } else{
+                    toast("An error occured while logging in, try again!", {style: {background: "#ff4d4d", color: "white"}})
                 }
             })
 

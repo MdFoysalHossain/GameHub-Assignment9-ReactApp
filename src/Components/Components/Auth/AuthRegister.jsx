@@ -3,18 +3,24 @@ import React, { useContext, useState } from 'react';
 import { NavLink } from 'react-router';
 import AuthProvider from '../../Contexts/AuthProvider';
 import { AuthContext } from '../../Contexts/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
 
 const AuthRegister = () => {
 
-    const {createAccountEmailPass, updateUserInfo, userInfo, setUser, loading, googleSignIn} = useContext(AuthContext)
+    const { createAccountEmailPass, updateUserInfo, userInfo, setUser, loading, googleSignIn } = useContext(AuthContext)
     // console.log(createAccountEmailPass)
+
+
+    const [passLength, setPassLength] = useState(false)
+    const [hasUpper, setHasUpper] = useState(false)
+    const [hasLower, setHasLower] = useState(false)
 
     const [eye, setEye] = useState(false)
     // console.log("Is Loading?",loading)
 
-    if(!loading){
+    if (!loading) {
         console.log("Loading:", loading)
-        console.log("User after Loading:",userInfo)
+        console.log("User after Loading:", userInfo)
     }
 
     const checkEye = () => {
@@ -25,38 +31,70 @@ const AuthRegister = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
-        const confirmPassword = e.target.confirmPassword.value;
         const name = e.target.name.value;
         const imgLink = e.target.imgLink.value;
 
-        console.log(email, password, confirmPassword, name, imgLink)
-        createAccountEmailPass(email, password)
-        .then(result => {
-            // console.log("User:", result)
-            updateUserInfo(name, imgLink)
-                .then(()=> {
-                    console.log("Updated User Info:", result)
-                    setUser(result.user)
-                }) .catch(error => {
-                    console.log("Error Updating:", error)
+        if (passLength && hasUpper && hasLower) {
+            createAccountEmailPass(email, password)
+                .then(result => {
+                    // console.log("User:", result)
+                    updateUserInfo(name, imgLink)
+                        .then(() => {
+                            // console.log("Updated User Info:", result)
+                            setUser(result.user)
+                            toast("Successfully Account Created!", { style: { background: "#12d369", color: "white" } })
+                        }).catch(error => {
+                            toast("An error occured while updating the profile!", { style: { background: "#ff4d4d", color: "white" } })
+                        })
+                }).catch(error => {
+                    toast("An error occured while createing the account, try again!", { style: { background: "#ff4d4d", color: "white" } })
                 })
-        }) .catch(error => {
-            console.log("Error SignUp:", error)
-        })
+        } else{
+            toast("Please Fill The Password Requirements, Then Try Again!", { style: { background: "#ff4d4d", color: "white" } })
+        }
+
     }
 
     const signInGoogle = () => {
         googleSignIn()
             .then(result => {
-                console.log("Google Signin Successful \n", result)
-            }) .catch(error => {
-                console.log("Google Login Error:", error)
+                // console.log("Google Signin Successful \n", result)
+                toast("Successfully Logged in", { style: { background: "#12d369", color: "white" } })
+            }).catch(error => {
+                // console.log("Google Login Error:", error)
+                toast("An error occured while logging in, try again!", { style: { background: "#ff4d4d", color: "white" } })
             })
     }
 
+
+    const validatePassword = (e) => {
+        const password = e.target.value;
+        console.log(password)
+        // const confirmPassword = e.target.confirmPassword.value;
+
+        if (password.length < 6) {
+            // return "Password must be at least 6 characters long";
+            setPassLength(false)
+        } else {
+            setPassLength(true)
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            setHasUpper(false)
+        } else {
+            setHasUpper(true)
+        }
+
+        if (!/[a-z]/.test(password)) {
+            setHasLower(false)
+        } else {
+            setHasLower(true)
+        }
+    };
+
     return (
         <div className='flex flex-col gap-5 justify-center items-center h-[90vh]'>
-
+            <ToastContainer hideProgressBar={true}></ToastContainer>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
                     <h2 className='text-2xl font-semibold mb-2'>Account <span className='text-primary'>Register</span></h2>
@@ -69,13 +107,19 @@ const AuthRegister = () => {
                             <label className="label">Email</label>
                             <input type="email" name='email' className="input" placeholder="Email" required />
                             <label className="label">Password</label>
-                            <input type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
-                            <label className="label">Confirm Password</label>
-                            <input type={eye ? "text" : "password"} name='confirmPassword' className="input" placeholder="Password" required />
+                            <input onChange={validatePassword} type={eye ? "text" : "password"} name='password' className="input" placeholder="Password" required />
+                            {/* <label className="label">Confirm Password</label>
+                            <input type={eye ? "text" : "password"} name='confirmPassword' className="input" placeholder="Password" required /> */}
 
                             {
-                                eye ? <Eye onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[130px] right-[50px] cursor-pointer' />
+                                eye ? <Eye onClick={checkEye} className='absolute bottom-[197px] right-[50px] cursor-pointer' /> : <EyeClosed onClick={checkEye} className='absolute bottom-[197px] right-[50px] cursor-pointer' />
                             }
+
+                            <ul className='list-disc text-left ml-10 mt-2 text-[12px]'>
+                                <li className={passLength ? "text-green-500" : "text-red-500"}>Must be 6 Characters or More</li>
+                                <li className={hasUpper ? "text-green-500" : "text-red-500"}>Must have 1 Uppercase</li>
+                                <li className={hasLower ? "text-green-500" : "text-red-500"}>Must have 1 Lowercase</li>
+                            </ul>
 
                             <button className="btn btn-neutral mt-4">Register</button>
                             <div className='mt-2'>Already Have An Account? <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Login"}>Login</NavLink></div>
