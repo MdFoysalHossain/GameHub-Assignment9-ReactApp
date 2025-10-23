@@ -3,18 +3,12 @@ import { Link, Navigate, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../Contexts/AuthContext';
 
 const Navbar = () => {
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const {userInfo, userLogOut, setUser} = use(AuthContext)
 
 
-    // const selectedCat = (e) => {
-    //     // console.log(e.target.value)
-    //     const selectedGenre = e.target.value;
-    //     console.log(selectedGenre)
-    //     // return <Navigate to={`/${selectedGenre}`}/>;
-    //     navigate(`/Genre/${selectedGenre}`);
-    // }
+
 
     const userLogOutFunc = () => {
         userLogOut()
@@ -26,14 +20,9 @@ const Navbar = () => {
     }
 
     const selectCat = <>
-        {/* <li><select defaultValue="Select Game Genre" onChange={selectedCat} className="select bg-white text-black">
-            <option disabled={true}>Select Game Genre</option>
-            <option>FPS</option>
-            <option>RPG</option>
-            <option>MMORPG</option>
-        </select></li> */}
+
         {
-            userInfo ? <li className='flex flex-row gap-2 justify-center items-center'><img className='w-10 h-10 p-0 m-0 bg-white' src={userInfo.photoURL} alt="" /> <NavLink onClick={userLogOutFunc} className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Log Out</NavLink></li> : 
+            userInfo ? <li className='flex flex-row gap-2 justify-center items-center'><img onClick={() => {navigate('/MyProfile')}} className='w-10 h-10 p-0 m-0 bg-white' src={userInfo.photoURL} alt="" /> <NavLink onClick={userLogOutFunc} className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Log Out</NavLink></li> : 
             <li><NavLink className={"btn btn-primary text-white shadow-none"} to={"/Auth/Login"}>Login</NavLink></li>
         }
     </>

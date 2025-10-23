@@ -1,17 +1,27 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../../Contexts/DataContext';
 import { useLocation, useParams } from 'react-router';
+import Error404Logo from "../../../assets/App-Error.png"
 
 const Post = () => {
     const { id: paramId } = useParams();
-    const {dataGot} = useContext(DataContext);
-    
+    const { dataGot } = useContext(DataContext);
+
 
 
     const postInfo = dataGot.find(item => item.id === paramId)
 
+    if (postInfo == undefined) {
+        return (
+            <div className='flex flex-col gap-5 justify-center items-center h-[80vh]'>
+                <img src={Error404Logo} alt="404 Not Found" />
+                <h2 className='text-4xl font-semibold'>Page Not Found</h2>
+            </div>
+        )
+    }
 
-    console.log("PostInfo", postInfo)
+
+    // console.log("PostInfo", postInfo)
     return (
         <div className='flex flex-col justify-center items-center gap-5 mt-10'>
             <title>{"GameHub - " + postInfo.title}</title>
@@ -38,7 +48,7 @@ const Post = () => {
                     <a className=' rounded-md bg-primary text-white py-1.5 px-2' href={postInfo.downloadLink} target='_blank'>Open Download Page</a>
                 </div>
             </div>
-            
+
         </div>
     );
 };

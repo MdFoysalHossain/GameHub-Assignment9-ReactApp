@@ -6,6 +6,9 @@ import AuthRegister from "../Components/Auth/AuthRegister";
 import AuthProvider from "../Contexts/AuthProvider";
 import Post from "../Components/Post/Post";
 import ProtectedRoute from "../Routes/ProtectedRoute";
+import Error404 from "../Components/Error/Error404";
+import MyProfile from "../Components/MyProfile/MyProfile";
+import UpdateInfo from "../Components/MyProfile/UpdateInfo";
 
 export const router = createBrowserRouter([
   {
@@ -32,18 +35,32 @@ export const router = createBrowserRouter([
       {
         path: "/Auth/Register",
         Component: AuthRegister,
-      }, 
+      },
       {
         path: "/Post/:id",
-        element: 
-        <ProtectedRoute>
-          <Post></Post>
-        </ProtectedRoute>
+        element:
+          <ProtectedRoute>
+            <Post></Post>
+          </ProtectedRoute>
+      },
+      {
+        path: "/MyProfile",
+        element:
+          <ProtectedRoute>
+            <MyProfile></MyProfile>
+          </ProtectedRoute>,
+      },
+      {
+        path: "/UpdateInfo",
+        element:
+          <ProtectedRoute>
+            <UpdateInfo></UpdateInfo>
+          </ProtectedRoute>,
       }
     ],
   },
   {
     path: "/*",
-    element: <h1>404 Error Page</h1>,
+    element: <Error404></Error404>,
   },
 ]);
