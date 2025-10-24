@@ -58,13 +58,13 @@ function SingleGame({ item }) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
 
-            className="card SinglePopularGame bg-base-100 image-full w-96 shadow-sm">
-                <figure>
+            className="card SinglePopularGame image-full w-96 shadow-sm">
+                <figure className=''>
                     <img className='h-[220px] w-full'
                         src={item.coverPhoto}
                         alt="Shoes" />
                 </figure>
-                <div className="card-body text-left">
+                <div className="card-body bg-transparent text-left">
                     <h2 className="card-title">{item.title}</h2>
                     <p>{item.description}</p>
                     <div className="card-actions justify-end items-center ">
