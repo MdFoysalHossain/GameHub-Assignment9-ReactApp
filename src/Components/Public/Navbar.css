@@ -1,0 +1,6 @@
+.about.active {
+  color: #9B28F7;
+  text-decoration: underline;
+  text-decoration-thickness: 1.7px; 
+  text-underline-offset: 5px;    
+}

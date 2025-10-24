@@ -10,6 +10,7 @@ import Error404 from "../Components/Error/Error404";
 import MyProfile from "../Components/MyProfile/MyProfile";
 import UpdateInfo from "../Components/MyProfile/UpdateInfo";
 import AuthForgot from "../Components/Auth/AuthForgot";
+import AboutUs from "../Components/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
         index: true,
         path: "/",
         Component: Home,
+      },
+      {
+        path: "/About",
+        Component: AboutUs,
       },
       {
         path: "/Genre/:id",
