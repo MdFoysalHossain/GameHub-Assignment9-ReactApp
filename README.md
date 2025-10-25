@@ -3,7 +3,7 @@
 # Purpose:
 An engaging online library for discovering and supporting game developers. Users can browse indie games, see detailed information, and install if they like them.
 
-# Live URL:
+# Live URL: Link(https://gamehub-react.netlify.app/)
 
 # Key Features:
 ## Home Page:
