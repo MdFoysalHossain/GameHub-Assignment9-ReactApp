@@ -1,14 +1,23 @@
 import { Eye, EyeClosed } from 'lucide-react';
-import React, { useContext, useState } from 'react';
-import { NavLink } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router';
 import AuthProvider from '../../Contexts/AuthProvider';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { toast, ToastContainer } from 'react-toastify';
 import { motion } from "motion/react"
 
 const AuthRegister = () => {
+    const navagation = useNavigate()
+
 
     const { createAccountEmailPass, updateUserInfo, userInfo, setUser, loading, googleSignIn } = useContext(AuthContext)
+
+    useEffect(() => {
+        if (userInfo) {
+            navagation("/");
+        }
+
+    }, [userInfo, navagation]);
 
 
     const [passLength, setPassLength] = useState(false)

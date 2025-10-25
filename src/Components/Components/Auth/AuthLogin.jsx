@@ -1,6 +1,6 @@
 import { Eye, EyeClosed } from 'lucide-react';
-import React, { use, useState } from 'react';
-import { Navigate, NavLink, useLocation, useNavigate } from 'react-router';
+import React, { use, useEffect, useState } from 'react';
+import { Navigate, NavLink, useLocation, useNavigate, } from 'react-router';
 import { AuthContext } from '../../Contexts/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
@@ -9,9 +9,22 @@ import { motion } from "motion/react"
 
 
 const AuthLogin = () => {
+    const navagation = useNavigate()
+    const { userInfo } = use(AuthContext);
+
+    useEffect(() => {
+        if (userInfo) {
+            navagation("/");
+        }
+    }, [userInfo, navagation]);
+
+
+
     const { userEmailLogin, googleSignIn } = use(AuthContext);
     const navigation = useNavigate()
     const location = useLocation()
+
+
 
     const from = location.state?.from || '/';
 
@@ -53,17 +66,19 @@ const AuthLogin = () => {
         setEye(!eye)
     }
 
-    return (
-        <motion.div 
-        
-        initial={{ scale: 0 }} animate={{ scale: 1 }}
 
-        className='flex flex-col  gap-5 justify-center items-center lg:h-[90vh] mx-3 lg:mx-0 my-10'>
+
+    return (
+        <motion.div
+
+            initial={{ scale: 0 }} animate={{ scale: 1 }}
+
+            className='flex flex-col  gap-5 justify-center items-center lg:h-[90vh] mx-3 lg:mx-0 my-10'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <title>GameHub - Login</title>
 
             <div
-                
+
                 className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
                 <div className="card-body">
                     <h2 className='text-2xl font-semibold mb-2'>Account <span className='text-primary'>Login</span></h2>
