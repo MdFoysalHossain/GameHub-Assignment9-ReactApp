@@ -26,7 +26,7 @@ const AuthForgot = () => {
     return (
         <motion.div
             initial={{ scale: 0 }} animate={{ scale: 1 }}
-        className='flex justify-center items-center h-[80vh]'>
+        className='flex justify-center items-center lg:h-[80vh] mb-20 lg:mb-0 mx-3 lg:mx-0 my-10'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <title>GameHub - Forgot Password</title>
 
@@ -38,8 +38,8 @@ const AuthForgot = () => {
                             <label className="label">Email</label>
                             <input type="email" name='email' className="input" placeholder="Email" required />
 
-                            <button className="btn btn-neutral mt-4">Request Password Reset</button>
-                            <div className='mt-2 flex justify-between'>
+                            <button className="btn btn-primary text-white mt-4">Request Password Reset</button>
+                            <div className='mt-2 flex flex-col gap-2 md:flex-row justify-between'>
                                 <NavLink className="link link-hover text-primary font-semibold" to={"/Auth/Register"}>Register a New Account</NavLink>
                                 <NavLink className="link link-hover text-gray-800 font-semibold" to={"/Auth/Login"}>Alraedy Have an Account?</NavLink>
                             </div>

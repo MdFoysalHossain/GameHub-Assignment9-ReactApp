@@ -58,7 +58,7 @@ const AuthLogin = () => {
         
         initial={{ scale: 0 }} animate={{ scale: 1 }}
 
-        className='flex flex-col gap-5 justify-center items-center h-[90vh]'>
+        className='flex flex-col  gap-5 justify-center items-center lg:h-[90vh] mx-3 lg:mx-0 my-10'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <title>GameHub - Login</title>
 

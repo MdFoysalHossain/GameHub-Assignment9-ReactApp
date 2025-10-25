@@ -84,7 +84,7 @@ const AuthRegister = () => {
         <motion.div
         initial={{ scale: 0 }} animate={{ scale: 1 }}
 
-        className='flex flex-col gap-5 justify-center items-center h-[90vh]'>
+        className='flex flex-col gap-5 justify-center items-center lg:h-[90vh] mx-3 lg:mx-0'>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <title>GameHub - Register</title>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-md">
