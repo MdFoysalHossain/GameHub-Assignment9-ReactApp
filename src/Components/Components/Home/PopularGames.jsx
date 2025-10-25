@@ -26,8 +26,8 @@ const PopularGames = () => {
     }
 
     return (
-        <div className='mt-10'>
-            <div className="flex justify-between items-center mb-5 mt-16">
+        <div className='mt-10 px-2 xl:px-0'>
+            <div className="flex flex-col gap-3 md:flex-row justify-between items-center mb-5 mt-16">
 
                 <h2 className='text-3xl font-bold '>Popular <span className='text-primary'>Games</span></h2>
                 
@@ -38,7 +38,7 @@ const PopularGames = () => {
                 </select>
             </div>
 
-            <div className="grid grid-cols-1  gap-5 justify-center place-items-center items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-5 justify-center place-items-center items-center">
 
                 {
                     data.map((item, index) => <SingleGame key={index} item={item}></SingleGame>)
