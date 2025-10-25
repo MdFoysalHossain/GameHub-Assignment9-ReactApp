@@ -38,7 +38,7 @@ const PopularGames = () => {
                 </select>
             </div>
 
-            <div className="grid grid-cols-3 gap-5 justify-center items-center">
+            <div className="grid grid-cols-1  gap-5 justify-center place-items-center items-center">
 
                 {
                     data.map((item, index) => <SingleGame key={index} item={item}></SingleGame>)
@@ -58,7 +58,7 @@ function SingleGame({ item }) {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
 
-            className="card SinglePopularGame image-full w-96 shadow-sm">
+            className="card SinglePopularGame image-full col-span-1 w-80 l:w-96 shadow-sm">
                 <figure className=''>
                     <img className='h-[220px] w-full'
                         src={item.coverPhoto}
