@@ -1,9 +1,9 @@
 import React from 'react';
 
 const AboutUs = () => {
-    const webTitle = <><p className='inline font-semibold'>Game<span className='text-primary'>Hub</span></p></>
+    const webTitle = <><span className='inline font-semibold'>Game<span className='text-primary'>Hub</span></span></>
     return (
-        <div className='w-[800px] mx-auto'>
+        <div className='max-w-[800px] px-3 mx-auto'>
             <h2 className='text-3xl font-semibold text-left mt-10'>About  {webTitle}</h2>
 
             <div className="text-left text-lg flex flex-col gap-5 mt-5">
