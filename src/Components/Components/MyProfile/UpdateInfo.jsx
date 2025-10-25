@@ -26,7 +26,7 @@ const UpdateInfo = () => {
     return (
         <motion.div 
         initial={{ scale: 0 }} animate={{ scale: 1 }}
-        className='flex justify-center items-center h-[80vh]'>
+        className='flex justify-center items-center my-5 mx-3 lg:mx-0 lg:my-0 lg:h-[80vh]'>
             <title>GameHub - Update User Info</title>
             <ToastContainer hideProgressBar={true}></ToastContainer>
             <div className="card bg-base-100 w-full h-fit max-w-sm shrink-0 shadow-md">
