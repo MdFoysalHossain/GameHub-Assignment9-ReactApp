@@ -22,7 +22,7 @@ const Post = () => {
 
 
     return (
-        <div className='flex flex-col justify-center items-center gap-5 mt-10'>
+        <div className='flex flex-col justify-center items-center gap-5 mt-10 p-2 lg:p-0'>
             <title>{"GameHub - " + postInfo.title}</title>
             <div className="flex-1">
                 <img className='max-h-[400px] rounded-2xl' src={postInfo.coverPhoto} alt="" />
